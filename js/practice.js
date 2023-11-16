@@ -269,7 +269,47 @@ console.log(arr19.includes(3, -2))
 const arr20 = [1, 2, 3, 4, 5]
 console.log(arr20.includes(3, -4))
 
+//destructuring elements
 
+const arr21 = [1, 2, 3, 4, 5]
+const [x, y, z] = arr21
+console.log(x, y, z)
+
+//destructuring elements - 2
+
+const arr22 = [1, 2, 3, 4, 5]
+const [x1, , z1] = arr22
+console.log(x1, z1)
+
+//destructuring elements using objects 
+
+const obj = {
+    namme: "John",
+    agge: 20,
+    city: "New York"
+}
+
+const { namme, agge, city } = obj
+console.log(namme, agge, city)
+
+//spread and rest operators
+
+const arr23 = [1, 2, 3, 4, 5]
+const arr24 = [...arr23]
+console.log(arr24)
+
+//spread and rest operators - 2
+
+const arr25 = [1, 2, 3, 4, 5]
+const arr26 = [...arr25, 6, 7, 8]
+console.log(arr26)
+
+//spread and rest operators - 3
+
+const arr27 = [1, 2, 3, 4, 5]
+const arr28 = [6, 7, 8]
+const arr29 = [...arr27, ...arr28]
+console.log(arr29)
 
 
 
