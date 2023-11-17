@@ -1,4 +1,4 @@
-//Digital Clock
+//Digital Clock - Unsuccessful Attempt
 
 // clockPromise = () => {
 //     return new Promise(function (resolve) {
@@ -25,7 +25,3 @@ const clock = async () => {
 }
 
 clock();
-
-// clockPromise = new Promise ((resolve,reject)) => {
-    
-// }
