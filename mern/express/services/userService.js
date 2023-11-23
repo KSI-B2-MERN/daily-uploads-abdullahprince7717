@@ -4,7 +4,7 @@ module.exports = {
 
     getUser: () => {
         try {
-            const getUserResponse = userModel.getUser;
+            const getUserResponse = userModel.getUser();
             if (getUserResponse) {
                 return {
                     response: getUserResponse.response,
