@@ -1,7 +1,12 @@
 const authService = require('../services/authService');
 const joi = require("joi");
 
-
+const signupSchema = joi.object().keys({
+    name: joi.string().required().min(3),
+    email: joi.string().email().required(),
+    password: joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+    repeatPassword: joi.ref('password')
+})
 
 // {
 //     "name"  : "wow",
@@ -9,10 +14,12 @@ const joi = require("joi");
 // }
 
 module.exports = {
-    signUp: (req, res) => {
+    signUp: async (req, res) => {
         try {
-            console.log('req.body', req.body);
-            const serviceResponse = authService.signUp();
+            // console.log('req.body', req.body);
+            const validate = await signupSchema.validateAsync(req.body)
+            console.log(validate);
+            const serviceResponse = await authService.signUp(validate);
             if (serviceResponse.response) {
                 res.send({
                     response: serviceResponse.response
@@ -25,6 +32,7 @@ module.exports = {
             }
         }
         catch (err) {
+            console.log(err);
             res.send({
                 error: err
             })

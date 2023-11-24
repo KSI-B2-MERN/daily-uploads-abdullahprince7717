@@ -1,9 +1,12 @@
 const authModel = require('../models/authModel');
+const bcrypt = require('bcrypt');
 
 module.exports = {
-    signUp: () => {
+    signUp: async (body) => {
         try {
-            const signUpResponse = authModel.signUp();
+            delete body.repeatPassword;
+            body.password = await bcrypt.hash(body.password, 10)
+            const signUpResponse = await authModel.signUp(body);
             if (signUpResponse) {
                 return {
                     response: signUpResponse.response,
