@@ -1,8 +1,11 @@
+//Calling functions for definitions(Tables)
+
+const { models } = require('../models/index');
 module.exports = {
     signUp: async (body) => {
         try {
             return {
-                response: body,
+                response: await models.Users.create(body),
             }
         }
         catch (err) {
