@@ -28,7 +28,7 @@ var server = http.createServer(app);
 db.sequelize.sync({ alter: true }).then(() => {
   console.log('Database connected')
   // console.log('db', db)\
-  console.log('Model', models)
+  console.log('Models', models)
   server.listen(port);
   server.on('error', onError);
   server.on('listening', onListening);
