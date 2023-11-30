@@ -17,17 +17,10 @@ Products.init(
             type: DataTypes.STRING(90),
             allowNull: true,
         },
-        productPrice: {
-            type: DataTypes.STRING(90),
-            allowNull: false,
-        },
-        productQuantity: {
-            type: DataTypes.STRING(90),
-            allowNull: false,
-        },
         productImage: {
             type: DataTypes.STRING(90),
             allowNull: false,
+            unique: true,
         }
     }, {
     sequelize,
