@@ -54,11 +54,11 @@ module.exports = {
             };
         }
     },
-    deleteRole: async (params) => {
+    deleteRole: async (query) => {
         try {
             const deleteRole = await models.ROLES.destroy({
                 where: {
-                    roleId: params.roleId
+                    roleId: query.roleId
                 }
             });
             return {
