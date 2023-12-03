@@ -46,5 +46,31 @@ module.exports = {
                 error: error,
             }
         }
+    },
+    updateRole: async (body) => {
+        try {
+            const updateRole = await roleModel.updateRole(body);
+            return {
+                response: updateRole
+            };
+        }
+        catch (error) {
+            return {
+                error: error
+            };
+        }
+    },
+    deleteRole: async (query) => {
+        try {
+            const deleteRole = await roleModel.deleteRole(query);
+            return {
+                response: deleteRole
+            };
+        }
+        catch (error) {
+            return {
+                error: error
+            }
+        }
     }
 }

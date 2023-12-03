@@ -33,6 +33,43 @@ module.exports = {
                 error: error,
             }
         }
+    },
+    updateRole: async (body) => {
+        try {
+            const updateRole = await models.ROLES.update({
+                roleName: body.roleName,
+                roleDescription: body.roleDescription
+            }, {
+                where: {
+                    roleId: body.roleId
+                }
+            });
+            return {
+                response: updateRole
+            };
+        }
+        catch (error) {
+            return {
+                error: error
+            };
+        }
+    },
+    deleteRole: async (params) => {
+        try {
+            const deleteRole = await models.ROLES.destroy({
+                where: {
+                    roleId: params.roleId
+                }
+            });
+            return {
+                response: deleteRole
+            };
+        }
+        catch (error) {
+            return {
+                error: error
+            };
+        }
     }
 
 }
