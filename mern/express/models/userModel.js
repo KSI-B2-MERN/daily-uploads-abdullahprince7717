@@ -2,15 +2,16 @@ const { models } = require('../models/index');
 
 module.exports = {
 
-    getUser: () => {
+    getUsers: async () => {
         try {
+            const getUsers = await models.USERS.findAll();
             return {
-                response: "Getting User",
+                response: getUsers,
             }
         }
         catch (err) {
             return {
-                error: "User not found" + err.message
+                error: err
             }
         }
     },

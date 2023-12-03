@@ -11,17 +11,17 @@ const userSchema = joi.object().keys({
 
 
 module.exports = {
-    getUser: (req, res) => {
+    getUsers: (req, res) => {
         try {
-            const userServiceResponse = userService.getUser();
-            if (userServiceResponse.response) {
+            const userServiceResponse = userService.getUsers();
+            if (userServiceResponse.error) {
                 res.send({
-                    response: userServiceResponse.response
+                    error: userServiceResponse.error
                 })
             }
             else {
                 res.send({
-                    error: userServiceResponse.error
+                    response: userServiceResponse.response
                 })
             }
         }

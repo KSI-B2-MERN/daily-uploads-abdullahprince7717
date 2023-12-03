@@ -4,17 +4,17 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
 
-    getUser: () => {
+    getUsers: async () => {
         try {
-            const getUserResponse = userModel.getUser();
-            if (getUserResponse) {
+            const getUserResponse = await userModel.getUsers();
+            if (getUserResponse.error) {
                 return {
-                    response: getUserResponse.response,
+                    error: getUserResponse.error
                 }
             }
             else {
                 return {
-                    error: 'User not found'
+                    response: getUserResponse.response,
                 }
             }
 
