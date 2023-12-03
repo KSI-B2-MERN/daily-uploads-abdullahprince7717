@@ -19,4 +19,20 @@ module.exports = {
             }
         }
     },
+    getRoles: async () => {
+        try {
+            // console.log("getRole Model")
+            const getRoles = await models.ROLES.findAll();
+            // console.log(getRoles);
+            return {
+                response: getRoles
+            };
+        }
+        catch (error) {
+            return {
+                error: error,
+            }
+        }
+    }
+
 }

@@ -23,5 +23,28 @@ module.exports = {
                 error: err,
             }
         }
+    },
+    getRoles: async () => {
+        try {
+            // console.log("getRole Service")
+            const getRoles = await roleModel.getRoles();
+            // console.log(getRoles);
+            if (getRoles.error) {
+                return {
+                    error: getRoles.error
+                };
+            }
+            else {
+                return {
+                    response: getRoles.response
+                };
+
+            }
+        }
+        catch (error) {
+            return {
+                error: error,
+            }
+        }
     }
 }
