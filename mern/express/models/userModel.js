@@ -1,12 +1,37 @@
 const { models } = require('../models/index');
+const { Op } = require('sequelize');
 
 module.exports = {
 
-    getUsers: async () => {
+    getUsers: async (offset, query) => {
         try {
-            const getUsers = await models.USERS.findAll();
+            const getUsers = await models.USERS.findAll({
+                where: {
+                    ...(query.email ? { email: { [Op.substring]: query.email } } : true)
+                },
+
+                attributes: {
+                    exclude: ["password", "createdAt", "updatedAt", "deletedAt"]
+                },
+                include: {
+                    model: models.ROLES,
+                    attributes: {
+                        exclude: ["createdAt", "updatedAt", "deletedAt"]
+                    },
+                    where: {
+                        ...(query.role ? { role: query.role } : true) // ...(3 dots) is used here to apply ternary operator 
+                    }
+                },
+                offset: offset,
+                limit: query.limit,
+                order: [
+                    [query.sortValue, query.sortOrder]
+                ]
+
+            });
             return {
-                response: getUsers,
+                response: getUsers
+
             }
         }
         catch (err) {
@@ -15,19 +40,62 @@ module.exports = {
             }
         }
     },
-    createUser: async (firstName, lastName, email, password, userId) => {
+    createUser: async (body, userId) => {
+        console.log('In Model')
         try {
             const createUser = await models.USERS.create({
-                firstName,
-                lastName,
-                email,
-                password,
                 userId,
-                // roleId
-
+                ...body,
             })
             return {
                 response: createUser
+            }
+        }
+        catch (error) {
+            return {
+                error: error
+            }
+        }
+    },
+
+    getUserByEmail: async (email) => {    // to check if email already exists and will also be used in login
+        try {
+            const getUserByEmail = await models.USERS.findOne({
+                where: {
+                    email: email
+                },
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "deletedAt"]
+                },
+            })
+            return {
+                response: getUserByEmail
+            }
+        }
+        catch (error) {
+            return {
+                error: error
+            }
+        }
+    },
+    getRoleByUserId: async (userId) => {
+        try {
+            const getRoleByUserId = await models.USERS.findOne({
+                where: {
+                    userId: userId
+                },
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "deletedAt"]
+                },
+                include: {
+                    model: models.ROLES,
+                    attributes: {
+                        exclude: ["createdAt", "updatedAt", "deletedAt"]
+                    }
+                }
+            })
+            return {
+                response: getRoleByUserId
             }
         }
         catch (error) {

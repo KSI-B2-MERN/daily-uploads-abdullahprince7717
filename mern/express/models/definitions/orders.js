@@ -9,18 +9,7 @@ Orders.init(
             primaryKey: true,
             type: DataTypes.STRING(90),
         },
-        // userId: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // },
-        // productId: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // },
-        // orderStatus: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // }
+
     }, {
     sequelize,
     timestamps: true,

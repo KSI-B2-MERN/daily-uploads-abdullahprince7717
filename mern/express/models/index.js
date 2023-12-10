@@ -8,8 +8,9 @@ const CARTS = require("./definitions/carts");
 const ORDERS = require("./definitions/orders");
 const ORDER_ITEMS = require("./definitions/orderItems");
 const CART_ITEMS = require("./definitions/cartItems");
+const SESSION = require("./definitions/session");
 
-const models = { USERS, ROLES, VARIATIONS, PRODUCTS, CARTS, ORDERS, ORDER_ITEMS, CART_ITEMS };
+const models = { USERS, ROLES, VARIATIONS, PRODUCTS, CARTS, ORDERS, ORDER_ITEMS, CART_ITEMS, SESSION };
 
 //relationships between tables
 
@@ -25,19 +26,19 @@ USERS.belongsTo(ROLES, { foreignKey: 'roleId' });
 
 //USER-ORDER 1:M
 
-ORDERS.hasMany(USERS, { foreignKey: 'userId' });
-USERS.belongsTo(ORDERS, { foreignKey: 'userId' });
+USERS.hasMany(ORDERS, { foreignKey: 'userId' });
+ORDERS.belongsTo(USERS, { foreignKey: 'userId' });
 
 
 //USER-PRODUCT 1:M
 
-PRODUCTS.hasMany(USERS, { foreignKey: 'userId' });
-USERS.belongsTo(PRODUCTS, { foreignKey: 'userId' });
+USERS.hasMany(PRODUCTS, { foreignKey: 'userId' });
+PRODUCTS.belongsTo(USERS, { foreignKey: 'userId' });
 
 //PRODUCT-VARIATION 1:M
 
-VARIATIONS.hasMany(PRODUCTS, { foreignKey: 'variationId' });
-PRODUCTS.belongsTo(VARIATIONS, { foreignKey: 'variationId' });
+PRODUCTS.hasMany(VARIATIONS, { foreignKey: 'variationId' });
+VARIATIONS.belongsTo(PRODUCTS, { foreignKey: 'variationId' });
 
 //VARIATION-CART_ITEMS 1:M && CART-CART_ITEM 1:M (VARIATION-CART_ITEMS-CART  M:M)
 
@@ -55,6 +56,10 @@ ORDER_ITEMS.belongsTo(VARIATIONS, { foreignKey: 'variationId' });
 ORDERS.hasMany(ORDER_ITEMS, { foreignKey: 'orderId' });
 ORDER_ITEMS.belongsTo(ORDERS, { foreignKey: 'orderId' });
 
+//USER-SESSION 1:1
+
+USERS.hasOne(SESSION, { foreignKey: 'userId' });
+SESSION.belongsTo(USERS, { foreignKey: 'userId' });
 
 
 const db = {};

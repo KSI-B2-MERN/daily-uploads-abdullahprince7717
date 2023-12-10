@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.post('/signup', authController.signUp)
-router.get('/login', authController.logIn)
+router.post('/login', authController.logIn)
 router.get('/resetpass', authController.resetPass)
 router.get('/forgetpass', authController.forgetpass)
 router.get('/logout', authController.logOut)

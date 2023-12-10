@@ -1,5 +1,8 @@
 const authModel = require('../models/authModel');
+const userModel = require('../models/userModel');
+const config = require('../config.json');
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
     signUp: async (body) => {
@@ -81,18 +84,47 @@ module.exports = {
                 error: err,
             }
         }
-    }, logIn: () => {
+    }, logIn: async (email) => {
         try {
-            const logInResponse = authModel.logIn();
-            if (logInResponse) {
+            const logInResponse = await userModel.getUserByEmail(email)
+            if (logInResponse.error || !logInResponse.response) {
                 return {
-                    response: logInResponse.response,
+                    error: logInResponse.error || "Invalid Credentials",
                 }
             }
-            else {
+            const login = await bcrypt.compare(body.password, logInResponse.response.password);
+
+            if (!login) {
                 return {
-                    error: logInResponse.error,
+                    error: "Invalid credentials",
                 }
+            }
+            delete logInResponse.response.dataValues.password;
+            const token = jwt.sign(logInResponse.response.dataValues, config.jwt.secret, { expiresIn: '1h' });
+
+            const session = await sessionModel.getSessionByUserId(
+                logInResponse.response.dataValues.userId
+            );
+
+            if (session) {
+                await sessionModel.deleteSession(logInResponse.response.dataValues.userId);
+            }
+
+            const sessionId = uuidv4();
+            const createdSession = await sessionModel.createSession({
+                token,
+                userId: logInResponse.response.dataValues.userId,
+                sessionId,
+            });
+
+            if (logInResponse.error || !logInResponse.response) {
+                return {
+                    error: logInResponse.error || "Unable to Login",
+                }
+            }
+
+            return {
+                response: createdSession.response,
             }
         }
         catch (err) {

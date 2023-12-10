@@ -9,14 +9,6 @@ OrderItems.init(
             primaryKey: true,
             type: DataTypes.STRING(90),
         },
-        // orderId: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // },
-        // productId: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // },
         orderItemQuantity: {
             type: DataTypes.STRING,
             allowNull: false,

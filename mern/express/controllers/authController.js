@@ -8,6 +8,11 @@ const signupSchema = joi.object().keys({
     repeatPassword: joi.ref('password')
 })
 
+const loginSchema = joi.object().keys({
+    email: joi.string().email().required(),
+    password: joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+})
+
 // {
 //     "name"  : "wow",
 //     "email" : "wow@gmail.com"
@@ -42,14 +47,15 @@ module.exports = {
         try {
             console.log('req.body', req.body);
             const serviceResponse = authService.logIn();
-            if (serviceResponse.response) {
+            if (serviceResponse.error) {
                 res.send({
-                    response: serviceResponse.response
+                    error: serviceResponse.error
+
                 })
             }
             else {
                 res.send({
-                    error: serviceResponse.error
+                    response: serviceResponse.response
                 })
             }
         }

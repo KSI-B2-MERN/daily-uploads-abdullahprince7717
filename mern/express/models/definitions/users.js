@@ -16,22 +16,19 @@ Users.init(
             allowNull: false,
         },
         lastName: {
-            type: DataTypes.STRING(34),
+            type: DataTypes.STRING(90),
             allowNull: false,
         },
         email: {
-            type: DataTypes.STRING(34),
+            type: DataTypes.STRING(990),
             allowNull: false,
             unique: true
         },
         password: {
-            type: DataTypes.STRING(34),
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
-        roleId: {
-            type: DataTypes.STRING(90),
-            allowNull: false,
-        }
+
     }, {
     sequelize,
     timestamps: true,

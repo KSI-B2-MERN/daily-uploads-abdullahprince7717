@@ -2,6 +2,7 @@ const userService = require('../services/userService');
 const joi = require("joi");
 
 const userSchema = joi.object().keys({
+    roleId: joi.string().required(),
     firstName: joi.string().required().min(3),
     lastName: joi.string().required().min(3),
     email: joi.string().email().required(),
@@ -10,10 +11,21 @@ const userSchema = joi.object().keys({
 })
 
 
+const paginationSchema = joi.object().keys({
+    pageNo: joi.number().positive().greater(0).required(),
+    limit: joi.number().valid(5),
+    sortValue: joi.string().valid('email', 'firstName', "lastName", "createdAt"), // enum value 
+    sortOrder: joi.string().valid('ASC', 'DESC').required(),
+    role: joi.string().valid('vendor', 'customer'),
+    email: joi.string()
+
+})
+
 module.exports = {
-    getUsers: (req, res) => {
+    getUsers: async (req, res) => {
         try {
-            const userServiceResponse = userService.getUsers();
+            const validate = await paginationSchema.validateAsync(req.query);
+            const userServiceResponse = await userService.getUsers(validate);
             if (userServiceResponse.error) {
                 res.send({
                     error: userServiceResponse.error
@@ -33,21 +45,25 @@ module.exports = {
     },
     createUser: async (req, res) => {
         try {
+            console.log('In controller')
             const validate = await userSchema.validateAsync(req.body)
             const createUserResponse = await userService.createUser(validate);
-            if (createUserResponse.error) {
-                res.send({
+            delete createUserResponse.response.dataValues.password;
+
+            if (createUserResponse.error || !createUserResponse.response) {
+
+                return res.send({
                     error: createUserResponse.error
                 })
             }
-            else {
-                res.send({
-                    response: createUserResponse.response
-                })
-            }
+
+            return res.send({
+                response: createUserResponse.response
+            })
+
         }
         catch (error) {
-            res.send({
+            return res.send({
                 error: error
             })
         }

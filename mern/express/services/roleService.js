@@ -62,6 +62,7 @@ module.exports = {
     },
     deleteRole: async (query) => {
         try {
+            // check if role exists or not! then delete it!
             const deleteRole = await roleModel.deleteRole(query);
             return {
                 response: deleteRole

@@ -3,11 +3,12 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 var authRouter = require('./routes/authRouter');
 var userRouter = require('./routes/userRouter');
 var roleRouter = require('./routes/roleRouter');
 
-var app = express();
+var app = express()
 
 app.use(logger('dev'));
 app.use(express.json());

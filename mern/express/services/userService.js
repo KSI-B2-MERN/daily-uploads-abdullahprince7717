@@ -4,12 +4,13 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
 
-    getUsers: async () => {
+    getUsers: async (query) => {
         try {
-            const getUserResponse = await userModel.getUsers();
-            if (getUserResponse.error) {
+            const offset = (query.pageNo - 1) * query.limit;
+            const getUserResponse = await userModel.getUsers(offset, query);
+            if (!getUserResponse.response || getUserResponse.error) {
                 return {
-                    error: getUserResponse.error
+                    error: getUserResponse.error || "No users found"
                 }
             }
             else {
@@ -27,12 +28,20 @@ module.exports = {
         }
     },
     createUser: async (body) => {
+        console.log("In service")
         try {
             delete body.repeatPassword;
             const userId = uuidv4();
+
+            const user = await userModel.getUserByEmail(body.email);   // to check if email already exists
+            if (user.response || user.error) {
+                return {
+                    error: "User already exists"
+                }
+            }
             body.password = await bcrypt.hash(body.password, 10)
             // const roleId = "4b412d9d-20c5-4587-97da-58e9b4923441";
-            const createUserResponse = await userModel.createUser(body.firstName, body.lastName, body.email, body.password, userId);
+            const createUserResponse = await userModel.createUser(body, userId);
             if (createUserResponse.error) {
                 return {
                     error: createUserResponse.error

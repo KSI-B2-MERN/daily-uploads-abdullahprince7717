@@ -9,18 +9,7 @@ CartItems.init(
             primaryKey: true,
             type: DataTypes.STRING(90),
         },
-        // cartId: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // },
-        // productId: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // },
-        // variationId: {
-        //     type: DataTypes.STRING(90),
-        //     allowNull: false,
-        // },
+
         cartItemQuantity: {
             type: DataTypes.STRING,
             allowNull: false,

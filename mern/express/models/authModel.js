@@ -1,4 +1,4 @@
-//Calling functions for definitions(Tables)
+//Calling functions for definitions(Tables
 
 const { models } = require('../models/index');
 module.exports = {
@@ -14,8 +14,13 @@ module.exports = {
             }
         }
     },
-    logIn: () => {
+    logIn: async (email) => {
         try {
+            const user = await models.USERS.findOne({
+                where: {
+                    email: email,
+                }
+            })
             return {
                 response: "User Logged In",
             }
