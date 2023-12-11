@@ -59,5 +59,17 @@ module.exports = {
                 error: error
             }
         }
-    }
+    },
+    deleteUser: async (query) => {
+        try {
+            const user = await userModel.deleteUser(query.userId);
+            return {
+                response: user,
+            };
+        } catch (error) {
+            return {
+                error: error,
+            };
+        }
+    },
 }

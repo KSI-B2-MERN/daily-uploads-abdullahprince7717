@@ -13,19 +13,26 @@ const userSchema = joi.object().keys({
 
 const paginationSchema = joi.object().keys({
     pageNo: joi.number().positive().greater(0).required(),
-    limit: joi.number().valid(5),
+    limit: joi.number().valid(),
     sortValue: joi.string().valid('email', 'firstName', "lastName", "createdAt"), // enum value 
-    sortOrder: joi.string().valid('ASC', 'DESC').required(),
-    role: joi.string().valid('vendor', 'customer'),
-    email: joi.string()
+    sortOrder: joi.string().valid('ASC', 'DESC'),
+    role: joi.string().valid('vendor', 'customer'), //filter
+    email: joi.string() // filter
 
 })
+
+const getByIdSchema = joi.object().keys({
+    userId: joi.string().required(),
+});
+
 
 module.exports = {
     getUsers: async (req, res) => {
         try {
             const validate = await paginationSchema.validateAsync(req.query);
+            console.log(validate);
             const userServiceResponse = await userService.getUsers(validate);
+            console.log(userServiceResponse);
             if (userServiceResponse.error) {
                 res.send({
                     error: userServiceResponse.error
@@ -45,7 +52,7 @@ module.exports = {
     },
     createUser: async (req, res) => {
         try {
-            console.log('In controller')
+            // console.log('In controller')
             const validate = await userSchema.validateAsync(req.body)
             const createUserResponse = await userService.createUser(validate);
             delete createUserResponse.response.dataValues.password;
@@ -64,8 +71,26 @@ module.exports = {
         }
         catch (error) {
             return res.send({
-                error: error
+                error: error || "User already exists"
             })
         }
-    }
+    },
+    deleteUser: async (req, res) => {
+        try {
+            const validate = await getByIdSchema.validateAsync(req.query);
+            const user = await userService.deleteUser(validate);
+            if (user.error) {
+                return res.send({
+                    error: user.error,
+                });
+            }
+            return res.send({
+                response: user.response,
+            });
+        } catch (error) {
+            return {
+                error: error,
+            };
+        }
+    },
 }

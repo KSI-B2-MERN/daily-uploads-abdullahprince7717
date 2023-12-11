@@ -6,9 +6,9 @@ module.exports = {
     getUsers: async (offset, query) => {
         try {
             const getUsers = await models.USERS.findAll({
-                where: {
-                    ...(query.email ? { email: { [Op.substring]: query.email } } : true)
-                },
+                // where: {
+                //     ...(query.email ? { email: { [Op.substring]: query.email } } : true)
+                // },
 
                 attributes: {
                     exclude: ["password", "createdAt", "updatedAt", "deletedAt"]
@@ -18,15 +18,15 @@ module.exports = {
                     attributes: {
                         exclude: ["createdAt", "updatedAt", "deletedAt"]
                     },
-                    where: {
-                        ...(query.role ? { role: query.role } : true) // ...(3 dots) is used here to apply ternary operator 
-                    }
+                    // where: {
+                    //     ...(query.role ? { role: query.role } : true) // ...(3 dots) is used here to apply ternary operator 
+                    // }
                 },
                 offset: offset,
                 limit: query.limit,
-                order: [
-                    [query.sortValue, query.sortOrder]
-                ]
+                // order: [
+                //     [query.sortValue, query.sortOrder]
+                // ]
 
             });
             return {
@@ -76,6 +76,22 @@ module.exports = {
             return {
                 error: error
             }
+        }
+    },
+    deleteUser: async (userId) => {
+        try {
+            const user = await models.users.destroy({
+                where: {
+                    userId: userId,
+                },
+            });
+            return {
+                response: user,
+            };
+        } catch (error) {
+            return {
+                error: error,
+            };
         }
     },
     getRoleByUserId: async (userId) => {

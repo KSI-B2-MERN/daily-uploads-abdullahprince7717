@@ -45,22 +45,23 @@ module.exports = {
     },
     logIn: (req, res) => {
         try {
+            console.log('In controller')
             console.log('req.body', req.body);
-            const serviceResponse = authService.logIn();
+            const serviceResponse = authService.logIn(req.body);
             if (serviceResponse.error) {
-                res.send({
+                return res.send({
                     error: serviceResponse.error
 
                 })
             }
             else {
-                res.send({
+                return res.send({
                     response: serviceResponse.response
                 })
             }
         }
         catch (err) {
-            res.send({
+            return res.send({
                 error: err
             })
         }

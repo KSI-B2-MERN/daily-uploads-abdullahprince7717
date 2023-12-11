@@ -1,5 +1,6 @@
 const authModel = require('../models/authModel');
 const userModel = require('../models/userModel');
+const sessionModel = require('../models/sessionModel');
 const config = require('../config.json');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
@@ -84,16 +85,17 @@ module.exports = {
                 error: err,
             }
         }
-    }, logIn: async (email) => {
+    }, logIn: async (body) => {
         try {
-            const logInResponse = await userModel.getUserByEmail(email)
+            console.log("body", body)
+            const logInResponse = await userModel.getUserByEmail(body.email)
             if (logInResponse.error || !logInResponse.response) {
                 return {
                     error: logInResponse.error || "Invalid Credentials",
                 }
             }
             const login = await bcrypt.compare(body.password, logInResponse.response.password);
-
+            console.log("login", login)
             if (!login) {
                 return {
                     error: "Invalid credentials",

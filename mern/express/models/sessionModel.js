@@ -1,4 +1,4 @@
-const { models } = require('../index');
+const { models } = require('../models/index');
 
 module.exports = {
     createSession: async (token, userId, sessionId) => {

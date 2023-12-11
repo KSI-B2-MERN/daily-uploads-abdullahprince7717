@@ -30,7 +30,7 @@ module.exports = {
                         message: "Invalid Request"
                     })
                 }
-                if (role.response.dataValues.role.dataValues.role !== "CUSTOMER") {
+                if (role.response.dataValues.role.dataValues.role !== "Customer") {
                     return res.send({
                         message: "Invalid Request"
                     })
@@ -51,33 +51,33 @@ module.exports = {
             jwt.verify(token, config.jwt.secret, async (error, data) => {
                 if (error) {
                     return res.send({
-                        error: "Invalid request",
+                        error: "Invalid request1",
                     });
                 }
                 const session = await sessionModel.getSessionByUserId(data.userId);
                 if (session.error || !session.response) {
                     return res.send({
-                        error: "Invalid request",
+                        error: "Invalid request2",
                     });
                 }
                 const role = await userModel.getRoleByUserId(data.userId);
                 if (role.error || !role.response) {
                     return res.send({
-                        error: "Invalid request",
+                        error: "Invalid request3",
                     });
                 }
                 console.log("role ", role.response.dataValues.role.dataValues);
 
-                if (role.response.dataValues.role.dataValues.role !== "VENDOR") {
+                if (role.response.dataValues.role.dataValues.role !== "Vendor") {
                     return res.send({
-                        error: "Invalid request",
+                        error: "Invalid request4",
                     });
                 }
                 next();
             });
         } catch (error) {
             return res.send({
-                message: "Invalid request",
+                message: "Invalid request5",
             });
         }
     },
