@@ -16,7 +16,7 @@ const paginationSchema = joi.object().keys({
     limit: joi.number().valid(),
     sortValue: joi.string().valid('email', 'firstName', "lastName", "createdAt"), // enum value 
     sortOrder: joi.string().valid('ASC', 'DESC'),
-    role: joi.string().valid('vendor', 'customer'), //filter
+    roleName: joi.string().valid('vendor', 'customer'), //filter
     email: joi.string() // filter
 
 })

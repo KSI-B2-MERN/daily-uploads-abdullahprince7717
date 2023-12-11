@@ -43,10 +43,11 @@ module.exports = {
             })
         }
     },
-    logIn: (req, res) => {
+    logIn: async (req, res) => {
         try {
             console.log('In controller')
             console.log('req.body', req.body);
+            const validate = await loginSchema.validateAsync(req.body)
             const serviceResponse = authService.logIn(req.body);
             if (serviceResponse.error) {
                 return res.send({
