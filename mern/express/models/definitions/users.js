@@ -1,7 +1,11 @@
 //relations exists here in this file
 //this file is used to define the table structure of the users table
 const sequelize = require("../../bin/dbConnection");
+const { Sequelize } = require("sequelize");
 const { Model, DataTypes } = require("sequelize");
+const { v4: uuidv4 } = require('uuid');
+const { models } = require("../index");
+const carts = require("../definitions/carts");
 
 class Users extends Model { } // Users class will be treated as a model(table) now after extending Model class.
 
@@ -30,6 +34,18 @@ Users.init(
         },
 
     }, {
+
+    hooks: {
+        afterCreate: async (user) => {
+            console.log("user", user.dataValues)
+            // Sequelize.
+            const cart = await carts.create({
+                cartId: uuidv4(),
+                userId: user.dataValues.userId,
+            })
+            console.log("cart created", cart)
+        }
+    },
     sequelize,
     timestamps: true,
     paranoid: true,
