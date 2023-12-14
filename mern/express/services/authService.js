@@ -1,6 +1,7 @@
 const authModel = require('../models/authModel');
 const userModel = require('../models/userModel');
 const sessionModel = require('../models/sessionModel');
+const jwt = require('jsonwebtoken');
 const config = require('../config.json');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
@@ -102,7 +103,7 @@ module.exports = {
                 }
             }
             delete logInResponse.response.dataValues.password;
-            const token = jwt.sign(logInResponse.response.dataValues, config.jwt.secret, { expiresIn: '1h' });
+            const token = jwt.sign(logInResponse.response.dataValues, config.jwt.secret, { expiresIn: "1h" });
 
             const session = await sessionModel.getSessionByUserId(
                 logInResponse.response.dataValues.userId
@@ -112,12 +113,12 @@ module.exports = {
                 await sessionModel.deleteSession(logInResponse.response.dataValues.userId);
             }
 
-            const sessionId = uuidv4();
-            const createdSession = await sessionModel.createSession({
+            const sessonId = uuidv4();
+            const createdSession = await sessionModel.createSession(
                 token,
-                userId: logInResponse.response.dataValues.userId,
-                sessionId,
-            });
+                logInResponse.response.dataValues.userId,
+                sessonId,
+            );
 
             if (logInResponse.error || !logInResponse.response) {
                 return {

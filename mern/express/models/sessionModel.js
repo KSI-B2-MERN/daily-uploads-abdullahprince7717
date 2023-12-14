@@ -1,18 +1,20 @@
 const { models } = require('../models/index');
 
 module.exports = {
-    createSession: async (token, userId, sessionId) => {
+    createSession: async (token, userId, sessonId) => {
         try {
-            const createSession = await models.SESSIONS.create({  // upsert is used to update a row if it exists or create a new row if it doesnt exist
+            const session = await models.SESSION.create({  // upsert is used to update a row if it exists or create a new row if it doesnt exist
+                sessonId,
                 token,
                 userId,
-                sessionId
-            })
+
+            });
             return {
-                response: createSession
-            }
+                response: session
+            };
         }
         catch (err) {
+            console.log("Create Error", err);
             return {
                 error: err
             }
@@ -20,7 +22,7 @@ module.exports = {
     },
     getSessionByUserId: async (userId) => {
         try {
-            const session = await models.SESSIONS.findOne({
+            const session = await models.SESSION.findOne({
                 where: {
                     userId: userId
                 },
@@ -37,7 +39,7 @@ module.exports = {
     },
     deleteSession: async (userId) => {
         try {
-            const deleteSession = await models.SESSIONS.destroy({   // destroy is used to delete a row as table isnt paranoid
+            const deleteSession = await models.SESSION.destroy({   // destroy is used to delete a row as table isnt paranoid
                 where: {
                     userId: userId
                 }

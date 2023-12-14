@@ -48,18 +48,23 @@ module.exports = {
             console.log('In controller')
             console.log('req.body', req.body);
             const validate = await loginSchema.validateAsync(req.body)
-            const serviceResponse = authService.logIn(req.body);
+            const serviceResponse = await authService.logIn(validate);
             if (serviceResponse.error) {
                 return res.send({
                     error: serviceResponse.error
 
                 })
             }
-            else {
-                return res.send({
-                    response: serviceResponse.response
-                })
-            }
+            const cookies = { token: serviceResponse.response }
+            const hour = 60 * 60 * 1000
+            res.cookie("auth", cookies, {
+                maxAge: hour,
+                httpOnly: true,
+            })
+            return res.send({
+                response: serviceResponse.response
+            })
+
         }
         catch (err) {
             return res.send({
