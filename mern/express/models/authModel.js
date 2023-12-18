@@ -5,7 +5,8 @@ module.exports = {
     signUp: async (body) => {
         try {
             return {
-                response: await models.Users.create(body),
+                // response: await models.USERS.create(body),
+                response: "User Signed Up"
             }
         }
         catch (err) {

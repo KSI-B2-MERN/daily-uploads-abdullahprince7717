@@ -13,7 +13,7 @@ const { db, models } = require('../models/index')
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3008');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
