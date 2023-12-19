@@ -1,5 +1,23 @@
+import { useState } from 'react'
+import axios from 'axios'
 
-function Login() {
+function Login(updateSignUp) {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [role, setRole] = useState('')
+
+    const login = async () => {
+        const { data, error } = await axios.post("http://localhost:3000/auth/login", {
+            email: email,
+            password: password,
+            role: role
+        })
+        if (data.error || error) {
+            alert("Invalid Credentials")
+        }
+    }
+
     return (
         <div className="w-screen h-screen flex pt-16 bg-gradient-to-r from-cyan-300 to-blue-500 justify-center align-middle">
             <div className="w-2/3 h-5/6 flex item-center border-4 rounded-3xl">
@@ -20,16 +38,26 @@ function Login() {
                                 type="email"
                                 className="w-5/6 h-2xl rounded-full m-3 px-4 py-3 bg-gray-300 text-xs text-gray-900"
                                 placeholder="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                             <input
                                 type="password"
                                 className="w-5/6 h-2xl rounded-full m-3 px-4 py-3 bg-gray-300 text-xs text-gray-900"
                                 placeholder="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
+                            <select onChange={(e) => setRole(e.target.value)} className="w-5/6 h-2xl rounded-full m-3 px-4 py-3 bg-gray-300 text-xs text-gray-900">
+                                <option value={role}>Customer</option>
+                                <option value={role}>Vendor</option>
+                            </select>
 
-                            <button className="ml-5 mt-3 rounded-full hover:underline px-14 bg-transparent border-gray-100 outline-gray-100 text-black text-sm ">Forgot Password?</button>
+                            {/* <button className="ml-5 mt-3 rounded-full hover:underline px-14 bg-transparent border-gray-100 outline-gray-100 text-black text-sm ">Forgot Password?</button> */}
+
+                            <button onClick={login} className="ml-5 mt-5 rounded-full hover:underline px-14 w-3/4 bg-transparent border-gray-100 outline-gray-100 text-black text-md ">Sign In</button>
 
                         </div>
 
@@ -45,7 +73,7 @@ function Login() {
 
                         <p className="mt-14 ">SignUp if you dont have an account.</p>
 
-                        <button className="ml-5 mt-5 rounded-full hover:underline px-14 w-3/4 bg-transparent border-gray-100 outline-gray-100 text-white text-md ">Sign Up</button>
+                        <button onClick={updateSignUp.updateSignUp} className="ml-5 mt-5 rounded-full hover:underline px-14 w-3/4 bg-transparent border-gray-100 outline-gray-100 text-white text-md ">Sign Up</button>
                     </div>
 
                 </div>

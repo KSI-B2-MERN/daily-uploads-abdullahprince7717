@@ -1,12 +1,19 @@
-// import Login from '../components/Login'
+import { useState } from 'react'
+import Login from '../components/Login'
 import Signup from '../components/SignUp'
 
 function App() {
+
+  const [signUp, setSignUp] = useState(false)
+
+  const updateSignUp = () => {
+    setSignUp(!signUp)
+  }
+
   return (
     <>
-      {/* <Login /> */}
-      <Signup />
-
+      {!signUp && <Login updateSignUp={updateSignUp} />}
+      {signUp && <Signup updateSignUp={updateSignUp} />}
     </>
   )
 }
