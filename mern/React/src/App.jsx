@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import Login from '../components/Login'
-import Signup from '../components/SignUp'
+import Login from './components/Login'
+import Signup from './components/SignUp'
+import HomeLayout from './pages/HomeLayout'
 
 function App() {
 
@@ -12,8 +13,9 @@ function App() {
 
   return (
     <>
-      {!signUp && <Login updateSignUp={updateSignUp} />}
-      {signUp && <Signup updateSignUp={updateSignUp} />}
+      {/* {!signUp && <Login updateSignUp={updateSignUp} />}
+      {signUp && <Signup updateSignUp={updateSignUp} />} */}
+      <HomeLayout />
     </>
   )
 }

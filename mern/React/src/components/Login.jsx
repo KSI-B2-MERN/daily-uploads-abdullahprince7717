@@ -5,13 +5,11 @@ function Login(updateSignUp) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [role, setRole] = useState('')
 
     const login = async () => {
         const { data, error } = await axios.post("http://localhost:3000/auth/login", {
             email: email,
             password: password,
-            role: role
         })
         if (data.error || error) {
             alert("Invalid Credentials")
@@ -50,10 +48,6 @@ function Login(updateSignUp) {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                            <select onChange={(e) => setRole(e.target.value)} className="w-5/6 h-2xl rounded-full m-3 px-4 py-3 bg-gray-300 text-xs text-gray-900">
-                                <option value={role}>Customer</option>
-                                <option value={role}>Vendor</option>
-                            </select>
 
                             {/* <button className="ml-5 mt-3 rounded-full hover:underline px-14 bg-transparent border-gray-100 outline-gray-100 text-black text-sm ">Forgot Password?</button> */}
 
