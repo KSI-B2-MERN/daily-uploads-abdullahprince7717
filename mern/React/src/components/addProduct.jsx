@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import UploadImage from './uploadImage';
+import axios from "axios";
 
 function AddProduct() {
 
@@ -8,16 +10,36 @@ function AddProduct() {
     const [productImage, setProductImage] = useState([])
     const [productCategory, setProductCategory] = useState('')
 
-    return (
-        <div className="w-full h-full p-10 bg-slate-200">
-            <div className="border-2 shadow-2xl bg-slate-500 flex flex-col justify-evenly items-center">
-                <h2> Add a Product</h2>
-                <input className='m-2' type="text" placeholder="Product Name" value={productName} onChange={(e) => { setProductName(e.target.value) }} />
-                <input type="number" placeholder="Product Name" value={productPrice} onChange={(e) => { setProductPrice(e.target.value) }} />
-                <input type="text" placeholder="Product Name" value={productDescription} onChange={(e) => { setProductDescription(e.target.value) }} />
-                <input type="file" placeholder="Product Name" value={productImage} onChange={(e) => { setProductImage(e.target.value) }} />
-                <input type="text" placeholder="Product Name" value={productCategory} onChange={(e) => { setProductCategory(e.target.value) }} />
+    const imgTemplate = [{ a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }];
 
+    const uploadImage = (image) => {
+        setProductImage([...productImage, image]);
+    }
+    return (
+        <div className="w-full h-full  py-2 bg-slate-200 flex flex-col justify-evenly items-center text-black overflow-hidden">
+            <div className='w-[70%] h-full flex flex-col px-10 py-10 overflow-y-auto' style={{ scrollbarWidth: 'none' }}>
+                <p className='m-3 text-3xl'> Add a Product</p>
+                <label className='relative left-3 ' > Product Name </label>
+                <input className='m-2  p-3 border-slate-300 border-s rounded-xl' type="text" placeholder="Product Name" value={productName} onChange={(e) => { setProductName(e.target.value) }} />
+
+                <label className='relative left-3' > Product Price </label>
+                <input className='m-2 p-3 border-slate-300 border-s rounded-xl ' type="number" placeholder="Product Price" value={productPrice} onChange={(e) => { setProductPrice(e.target.value) }} />
+
+                <label className='relative left-3' > Product Description </label>
+                <input className='m-2  p-3 border-slate-300 border-s rounded-xl' type="text" placeholder="Product Description" value={productDescription} onChange={(e) => { setProductDescription(e.target.value) }} />
+
+                <label className='relative left-3' > Product Image </label>
+                <div className='ml-3 flex items-center justify-between'>
+                    {/* <UploadImage uploadImage={uploadImage} /> */}
+                    {imgTemplate.map((items, index) => {
+
+                        return <UploadImage key={index} uploadImage={uploadImage} />;
+                    })}
+                </div>
+                <label className='relative left-3' > Product Category </label>
+                <input className='m-2  p-3 border-slate-300  rounded-xl' type="text" placeholder="Product Category" value={productCategory} onChange={(e) => { setProductCategory(e.target.value) }} />
+
+                <button className='m-2 mb-12  p-2 border-slate-30 rounded-xl text-white'> Add Product</button>
             </div>
 
         </div>

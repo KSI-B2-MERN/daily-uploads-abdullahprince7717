@@ -1,13 +1,11 @@
 
 function sidebar() {
     return (
-        <div className="w-full h-full">
-            <ul className="flex flex-col h-full">
-                <li className="p-3"><button className="w-full">Add product</button></li>
-                <li className="p-3"><button className="w-full">Inventory</button></li>
-                <li className="p-3"><button className="w-full">Orders</button></li>
-            </ul>
-        </div>
+        <div className="w-full h-5/6 flex flex-col justify-start">
+            <p className="p-3"><button className="w-full">Add product</button></p>
+            < p className="p-3" > <button className="w-full">Inventory</button></ p>
+            <p className="p-3"><button className="w-full">Orders</button></p>
+        </div >
     )
 }
 
