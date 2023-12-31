@@ -17,8 +17,8 @@ function AddProduct() {
     }
     return (
         <div className="w-full h-full  py-2 bg-slate-200 flex flex-col justify-evenly items-center text-black overflow-hidden">
-            <div className='w-[70%] h-full flex flex-col px-10 py-10 overflow-y-auto' style={{ scrollbarWidth: 'none' }}>
-                <p className='m-3 text-3xl'> Add a Product</p>
+            <div className='w-[70%] h-full flex flex-col px-10 py-10 overflow-y-auto hide-scroll' >
+                <p className='m-3 text-3xl text-center mt-4'> Add a Product</p>
                 <label className='relative left-3 ' > Product Name </label>
                 <input className='m-2  p-3 border-slate-300 border-s rounded-xl' type="text" placeholder="Product Name" value={productName} onChange={(e) => { setProductName(e.target.value) }} />
 
