@@ -18,10 +18,22 @@ Products.init(
             allowNull: true,
         },
         productImage: {
-            type: DataTypes.STRING(90),
+            type: DataTypes.ARRAY(DataTypes.STRING(1000)),
             allowNull: false,
             unique: true,
-        }
+        },
+        productQuantity: {
+            type: DataTypes.STRING(34),
+            allowNull: false,
+        },
+        productCategory: {
+            type: DataTypes.STRING(34),
+            allowNull: false,
+        },
+        productPrice: {
+            type: DataTypes.STRING(34),
+            allowNull: false,
+        },
     }, {
     sequelize,
     timestamps: true,

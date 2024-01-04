@@ -3,10 +3,9 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
     createProduct: async (body) => {
-        // console.log("check1")
         try {
             const productId = uuidv4();
-            const createProduct = await productModel.createProduct(body.userId, body.productName, body.productDescription, productId, body.productImage);
+            const createProduct = await productModel.createProduct(body.userId, body.productName, body.productDescription, productId, body.productImage, body.productQuantity, body.productCategory, body.productPrice, body.userId);
             if (createProduct.error) {
                 return {
                     error: createProduct.error

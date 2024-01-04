@@ -1,7 +1,7 @@
 
 const { models } = require('./index');
 module.exports = {
-    createProduct: async (userId, productName, productDescription, productId, productImage) => {
+    createProduct: async (userId, productName, productDescription, productId, productImage, productQuantity, productCategory, productPrice) => {
         console.log("check1 Model")
         try {
             const createProduct = await models.PRODUCTS.create({
@@ -9,7 +9,10 @@ module.exports = {
                 productName,
                 productDescription,
                 productId,
-                productImage
+                productImage,
+                productQuantity,
+                productCategory,
+                productPrice
             });
             return {
                 response: createProduct
