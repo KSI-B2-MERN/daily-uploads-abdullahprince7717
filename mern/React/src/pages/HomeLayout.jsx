@@ -1,3 +1,4 @@
+import { slide as Menu } from 'react-burger-menu'
 import Navbar from "../components/navbar"
 import Sidebar from "../components/sidebar"
 import AddProduct from "../components/addProduct"
@@ -13,8 +14,8 @@ function HomeLayout() {
                 <div className="w-1/5 h-full bg-gray-700 flex ">
                     <Sidebar />
                 </div>
-                <div className="w-4/5  bg-slate-500 ">
-                    <AddProduct />
+                <div className="w-4/5  bg-slate-500 custom-scrollbar">
+                    {/* <AddProduct /> */}
                     <ProductList />
                 </div>
             </div>

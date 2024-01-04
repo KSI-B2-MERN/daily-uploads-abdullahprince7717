@@ -3,8 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidV4 } from "uuid";
 
 const supabase = createClient(
-    "https://fapaboxxewvjmbimghvz.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhcGFib3h4ZXd2am1iaW1naHZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM1Njc4NDAsImV4cCI6MjAxOTE0Mzg0MH0.x5ScSG_6Gd7j5UxniS0YtLZZg36tz5tFlc-NnQBQoog"
+    "https://vavmugbryrdzpxpymytq.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhdm11Z2JyeXJkenB4cHlteXRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM1Njc5NTUsImV4cCI6MjAxOTE0Mzk1NX0.lkJS5aXZaKUyUGhv46xCmK348eWlpjp3LuvfzBxEW0c"
 );
 
 function UploadImage(props) {

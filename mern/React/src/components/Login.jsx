@@ -10,6 +10,8 @@ function Login(updateSignUp) {
         const { data, error } = await axios.post("http://localhost:3000/auth/login", {
             email: email,
             password: password,
+        }, {
+            withCredentials: true,
         })
         if (data.error || error) {
             alert("Invalid Credentials")
