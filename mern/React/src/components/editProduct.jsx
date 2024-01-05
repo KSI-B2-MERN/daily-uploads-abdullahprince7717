@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import UploadImage from './uploadImage';
-import axios from "axios";
+// import axios from "axios";
 
 function EditProduct() {
 
