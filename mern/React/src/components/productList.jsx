@@ -26,11 +26,11 @@ function ProductList() {
             })
     }
     return (
-        <div className='w-full h-full flex justify-center mt-4 mb-4'>
+        <div className='w-full h-full flex justify-center mt-4 mb-4 '>
             <div className='w-[90%] h-[95%] m-auto '>
                 <div className='flex h-[10%] mb-3 justify-center'>
                     {/* <button className='rounded-3xl ' onClick={() => navigate("addproduct")}>Add Product</button> */}
-                    <p className='font-bold text-5xl'>Products</p>
+                    <p className='font-bold text-5xl text-black'>Products</p>
                 </div>
                 <div className=' w-full h-[20%] flex justify-center'>
                     <input placeholder='Search for Products' className='mt-4 p-5 w-[80%] h-[11%]  rounded-xl ' />

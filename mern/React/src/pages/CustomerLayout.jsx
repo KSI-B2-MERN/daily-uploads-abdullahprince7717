@@ -10,7 +10,9 @@ function CustomerLayout(props) {
             <div className='h-35 w-full mb-5'>
                 <Header />
             </div>
-            <Carousel />
+            <div className=''>
+                <Carousel />
+            </div>
             <Services />
             <div className=''>
                 <ProductCard />

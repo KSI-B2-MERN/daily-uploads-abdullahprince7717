@@ -24,15 +24,15 @@ function HomeLayout() {
     const dispatch = useDispatch();
 
     return (
-        <div className="w-screen h-screen bg-slate-400 flex items-end">
-            <div className="h-[10%]">
+        <div className="w-screen h-screen bg-white flex items-end">
+            <div className="h-[10%] ">
                 <Navbar />
             </div>
             <div className="w-full h-[90%] flex overflow-hidden ">
-                <div className="w-1/5 h-full bg-gray-700 flex ">
+                <div className="w-1/5 h-full border-8 flex ">
                     <Sidebar onScreenChanged={onScreenChanged} />
                 </div>
-                <div className="w-4/5  bg-slate-500 custom-scrollbar">
+                <div className="w-4/5  bg-slate-200 custom-scrollbar">
                     {/* <p>{state}</p>
                     <button onClick={() => { dispatch(buyCake(cakeCount)) }}>Dispatch</button> */}
                     {currentScreen == 'Add product' ? <AddProduct /> : currentScreen == 'Inventory' ? <ProductList /> : <Orders />}
