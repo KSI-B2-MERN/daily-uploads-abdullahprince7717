@@ -12,6 +12,7 @@ const cakeReducer = (state = INITIAL_STATE, action) => {
     if (action.type == 'BUY_CAKE') {
         return {
             ...state,
+            // numOfCakes: state.numOfCakes + 1
             numOfCakes: state.numOfCakes + action.payload.cakesToBuy
         }
     }

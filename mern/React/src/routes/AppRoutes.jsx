@@ -16,7 +16,7 @@ function AppRoutes() {
     return (
         <>
             <Routes>
-                <Route path="" element={<HomeLayout />} /> {/* OR <Route index element={<HomeLayout />} /> */}
+                <Route path="" element={<HomeLayout />} />                   {/* OR <Route index element={<HomeLayout />} /> */}
                 <Route path="login" element={<Login updateSignUp={updateSignUp} />} />
                 <Route path="signup" element={<Signup updateSignUp={updateSignUp} />} />
                 <Route path="addproduct" element={<AddProduct />} />
@@ -26,7 +26,7 @@ function AppRoutes() {
                 {/* Now we can make it if we have layouts 
                     1st Technique 
                 */}
-                <Route path="vendor" element={<HomeLayout />}>
+                <Route path="user" element={<CustomerLayout />}>
                     {/* The paths below are childs of adminlayout (admin route) and to make it useful we will use Outlet in 
                         adminLayout(parent) to use the childs or let user to route to childs
                     / */}
@@ -34,8 +34,6 @@ function AppRoutes() {
 
                     {/* <Route path="addproduct" element={<AddProduct />} /> */}
                     {/* <Route path="addcategory" element={<AddCategory />} /> */}
-
-
                 </Route>
 
                 {/* 
@@ -54,8 +52,6 @@ function AppRoutes() {
                     </CustomerLayout>}
 
                 />
-
-
             </Routes>
         </>
     )

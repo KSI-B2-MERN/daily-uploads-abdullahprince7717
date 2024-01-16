@@ -7,7 +7,7 @@ const supabase = createClient(
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhdm11Z2JyeXJkenB4cHlteXRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM1Njc5NTUsImV4cCI6MjAxOTE0Mzk1NX0.lkJS5aXZaKUyUGhv46xCmK348eWlpjp3LuvfzBxEW0c"
 );
 
-function UploadImage(props) {
+function UploadImage(uploadImage) {
     const [image, setImage] = useState(null);
     const hiddenFileInput = useRef(null);
 
@@ -62,7 +62,7 @@ function UploadImage(props) {
                             .getPublicUrl(uploadData.path);
                         console.log("get image ", getData);
 
-                        void props.uploadImage(getData.publicUrl);
+                        void uploadImage.uploadImage(getData.publicUrl);
                     }}
                 />
             </div>

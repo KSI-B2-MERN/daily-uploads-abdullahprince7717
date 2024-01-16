@@ -1,13 +1,30 @@
-// import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FaRegEye } from "react-icons/fa";
 import { IoLockOpenOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-
-
+import axios from "axios";
 
 function ProductList() {
     const navigate = useNavigate();
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        getProducts();
+        console.log("products", products)
+    }, [])
+
+    const getProducts = async () => {
+
+        await axios.get('http://localhost:3000/products/getProducts', { withCredentials: true })
+            .then((res) => {
+                console.log(res)
+                setProducts(res.data.response);
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
     return (
         <div className='w-full h-full flex justify-center mt-4 mb-4'>
             <div className='w-[90%] h-[95%] m-auto '>
@@ -31,7 +48,6 @@ function ProductList() {
                             <select className="w-20 h-7" >
                                 <option value="1">Wow</option>
                                 <option value="2">2</option>
-
                             </select>
                         </div>
                     </div>
@@ -49,18 +65,20 @@ function ProductList() {
                     <hr className='' />
                     <div className='grey-area bg-gray-300 w-full h-[30%] flex pr-1'>
                         <input className='h-10 p-2 m-1 z-20' type="checkbox" />
-                        <div className='flex justify-around w-full ' onClick={() => { navigate("editproduct", { route: true }) }}>
-                            <p className="p-2 ">Img</p>
-                            <p className="p-2">Name</p>
-                            <p className="p-2">Created</p>
-                            <p className="p-2">Price</p>
-                            <p className="p-2">Stock</p>
-                            <div className='px-2 py-3 ml-2 w-[9%] flex justify-between'>
-                                <nav><FaRegEye /></nav>
-                                <nav><IoLockOpenOutline /></nav>
-                                <nav><CiHeart /></nav>
+                        {products.map((value, index) => {
+                            <div className='flex justify-around w-full ' onClick={() => { navigate("editproduct", { route: true }) }}>
+                                <p className="p-2 ">{value.productImage[index]}</p>
+                                <p className="p-2">{value.productName[index]}</p>
+                                <p className="p-2">Created</p>
+                                <p className="p-2">Price</p>
+                                <p className="p-2">Stock</p>
+                                <div className='px-2 py-3 ml-2 w-[9%] flex justify-between'>
+                                    <nav><FaRegEye /></nav>
+                                    <nav><IoLockOpenOutline /></nav>
+                                    <nav><CiHeart /></nav>
+                                </div>
                             </div>
-                        </div>
+                        })}
                     </div>
                 </div>
             </div>

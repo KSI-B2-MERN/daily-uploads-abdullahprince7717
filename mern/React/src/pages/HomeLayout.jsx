@@ -10,7 +10,7 @@ import { buyCake } from "../redux/cakeActions"
 function HomeLayout() {
 
     const [currentScreen, setCurentScreen] = useState('Add product');
-    const [cakeCount, setCakeCount] = useState(4);
+    const [cakeCount, setCakeCount] = useState(5);
 
     const onScreenChanged = (screen) => {
         console.log("currentScreen", currentScreen);
@@ -20,7 +20,7 @@ function HomeLayout() {
         return state.numOfCakes;
     })
 
-    //useDispatch takes the action as a parameter and dispatches it to the reducer
+    // useDispatch takes the action as a parameter and dispatches it to the reducer
     const dispatch = useDispatch();
 
     return (
@@ -33,8 +33,8 @@ function HomeLayout() {
                     <Sidebar onScreenChanged={onScreenChanged} />
                 </div>
                 <div className="w-4/5  bg-slate-500 custom-scrollbar">
-                    <p>{state}</p>
-                    <button onClick={() => { dispatch(buyCake(cakeCount)) }}>Dispatch</button>
+                    {/* <p>{state}</p>
+                    <button onClick={() => { dispatch(buyCake(cakeCount)) }}>Dispatch</button> */}
                     {currentScreen == 'Add product' ? <AddProduct /> : currentScreen == 'Inventory' ? <ProductList /> : <Orders />}
                 </div>
             </div>
