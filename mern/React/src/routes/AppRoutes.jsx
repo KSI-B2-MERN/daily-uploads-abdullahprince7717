@@ -7,6 +7,8 @@ import HomeLayout from '../pages/HomeLayout'
 import CustomerLayout from '../pages/CustomerLayout'
 import AddProduct from '../components/addProduct'
 import EditProduct from '../components/addProduct'
+import ProductsList from '../components/customer/productsList'
+
 function AppRoutes() {
     const [signUp, setSignUp] = useState(false)
 
@@ -21,6 +23,8 @@ function AppRoutes() {
                 <Route path="signup" element={<Signup updateSignUp={updateSignUp} />} />
                 <Route path="addproduct" element={<AddProduct />} />
                 <Route path='editproduct' element={<EditProduct />} />
+                <Route path="products" element={<ProductsList />} />
+
                 {/* <Route path="*" element={<ErrorPage />} /> */}
 
                 {/* Now we can make it if we have layouts 
@@ -32,8 +36,7 @@ function AppRoutes() {
                     / */}
 
 
-                    {/* <Route path="addproduct" element={<AddProduct />} /> */}
-                    {/* <Route path="addcategory" element={<AddCategory />} /> */}
+                    {/* <Route path="products" element={<ProductsList />} /> */}
                 </Route>
 
                 {/* 

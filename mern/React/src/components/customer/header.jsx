@@ -1,12 +1,12 @@
-import React from 'react'
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 function header() {
     return (
 
-        <div className='h-full w-full flex flex-col text-black'>
+        <div className='h-35 w-full flex flex-col text-black'>
             <div className='h-1/5 w-full flex justify-between p-4 bg-rose-500' >
                 <div className='w-24 flex justify-between'>
                     <FaInstagram size={20} />
@@ -24,8 +24,9 @@ function header() {
                 <div className='text-3xl'>
                     My Store
                 </div>
-                <div className=' w-[40%] h-[10%]'>
-                    <input placeholder='Search for Products' className=' p-5 w-full h-full  rounded-xl ' />
+                <div className=' w-[40%] h-[10%] flex'>
+                    <input placeholder='Search for Products' className=' p-5 w-full h-full text-white rounded-xl ' />
+                    <button className="bg-white ml-2"><FaSearch size={30} /></button>
                 </div>
                 <div className='w-40 flex justify-between'>
                     <FaInstagram size={28} />
@@ -33,17 +34,19 @@ function header() {
                     <FaTwitter size={28} />
                 </div>
             </div>
+            <hr />
             <div className='h-full w-full flex justify-between p-4' >
                 <div className='w-3/5 flex justify-evenly'>
-                    <p>Home</p>
-                    <p>Shop</p>
-                    <p>Blog</p>
-                    <p>Contact</p>
+                    <a onClick={() => { }}>Home</a>
+                    <a>Shop</a>
+                    <a>Blog</a>
+                    <a>Contact</a>
                 </div>
                 <div>
                     <p>Upto 60% off on all items</p>
                 </div>
             </div>
+            <hr />
         </div>
     )
 }
