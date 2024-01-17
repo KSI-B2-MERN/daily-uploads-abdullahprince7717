@@ -6,8 +6,8 @@ import { FaTwitter } from "react-icons/fa";
 function header() {
     return (
 
-        <div className='h-full w-full flex flex-col'>
-            <div className='h-1/5 w-full flex justify-between p-4 bg-peach' >
+        <div className='h-full w-full flex flex-col text-black'>
+            <div className='h-1/5 w-full flex justify-between p-4 bg-rose-500' >
                 <div className='w-24 flex justify-between'>
                     <FaInstagram size={20} />
                     <FaFacebook size={20} />
