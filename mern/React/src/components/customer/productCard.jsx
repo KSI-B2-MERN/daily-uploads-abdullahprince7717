@@ -9,7 +9,7 @@ function ProductCard() {
     //     setRating(newRating);
     // };
     return (
-        <div className=" w-52 flex flex-col border-2 rounded-3xl  text-black  ">
+        <div className=" w-52 flex flex-col border-2 rounded-3xl bg-white text-black  ">
             <img className='h-40 rounded-3xl rounded-br-none rounded-bl-none' src="https://picsum.photos/1000/700" alt="" />
             <div className='p-5'>
                 <p className="text-md font-bold">Samsung galaxy s20</p>

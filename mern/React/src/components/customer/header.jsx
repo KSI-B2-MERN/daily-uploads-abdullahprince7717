@@ -2,6 +2,9 @@ import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { IoPersonOutline } from "react-icons/io5";
+import { LuShoppingCart } from "react-icons/lu";
+
 
 function header() {
     return (
@@ -28,19 +31,18 @@ function header() {
                     <input placeholder='Search for Products' className=' p-5 w-full h-full text-white rounded-xl ' />
                     <button className="bg-white ml-2"><FaSearch size={30} /></button>
                 </div>
-                <div className='w-40 flex justify-between'>
-                    <FaInstagram size={28} />
-                    <FaFacebook size={28} />
-                    <FaTwitter size={28} />
+                <div className='w-28 flex justify-around'>
+                    <IoPersonOutline size={28} />
+                    <LuShoppingCart size={28} />
                 </div>
             </div>
             <hr />
-            <div className='h-full w-full flex justify-between p-4' >
-                <div className='w-3/5 flex justify-evenly'>
-                    <a onClick={() => { }}>Home</a>
-                    <a>Shop</a>
-                    <a>Blog</a>
-                    <a>Contact</a>
+            <div className=' w-full flex justify-between bg-white p-4' >
+                <div className='w-3/5 flex justify-evenly '>
+                    <a className="hover:cursor-pointer" onClick={() => { }}>Home</a>
+                    <a className="hover:cursor-pointer">Shop</a>
+                    <a className="hover:cursor-pointer">Blog</a>
+                    <a className="hover:cursor-pointer">Contact</a>
                 </div>
                 <div>
                     <p>Upto 60% off on all items</p>
