@@ -3,11 +3,12 @@ import { Routes, Route } from 'react-router-dom'
 import Login from '../components/Login'
 import Signup from '../components/SignUp'
 import HomeLayout from '../pages/HomeLayout'
-// import AdminLayout from '../pages/AdminLayout'
 import CustomerLayout from '../pages/CustomerLayout'
+import Home from '../components/customer/Home'
 import AddProduct from '../components/addProduct'
 import EditProduct from '../components/addProduct'
 import ProductsList from '../components/customer/productsList'
+import Cart from '../components/customer/cart'
 
 function AppRoutes() {
     const [signUp, setSignUp] = useState(false)
@@ -18,43 +19,18 @@ function AppRoutes() {
     return (
         <>
             <Routes>
-                <Route path="" element={<HomeLayout />} />                   {/* OR <Route index element={<HomeLayout />} /> */}
+                <Route path="" element={<HomeLayout />} />
                 <Route path="login" element={<Login updateSignUp={updateSignUp} />} />
                 <Route path="signup" element={<Signup updateSignUp={updateSignUp} />} />
                 <Route path="addproduct" element={<AddProduct />} />
                 <Route path='editproduct' element={<EditProduct />} />
-                <Route path="products" element={<ProductsList />} />
 
-                {/* <Route path="*" element={<ErrorPage />} /> */}
-
-                {/* Now we can make it if we have layouts 
-                    1st Technique 
-                */}
                 <Route path="user" element={<CustomerLayout />}>
-                    {/* The paths below are childs of adminlayout (admin route) and to make it useful we will use Outlet in 
-                        adminLayout(parent) to use the childs or let user to route to childs
-                    / */}
-
-
-                    {/* <Route path="products" element={<ProductsList />} /> */}
+                    <Route path="" element={<Home />} />
+                    <Route path="products" element={<ProductsList />} />
+                    <Route path="cart" element={<Cart />} />
                 </Route>
 
-                {/* 
-                    2nd Technique 
-                */}
-
-                <Route path="customer"
-                    element={<CustomerLayout>
-                        {/* The paths below are childs of customerlayout (customer route) and to make it useful we will use props.children in 
-                        customerLayout(parent) to use the childs or let user to route to childs
-                    */}
-                        {/* 
-                            <Route path="getproducts" element={<getProducts />} />
-                            
-                        */}
-                    </CustomerLayout>}
-
-                />
             </Routes>
         </>
     )

@@ -14,7 +14,7 @@ function ProductsList() {
 
     return (
         <div className="w-screen h-screen ">
-            <Header />
+            {/* <Header /> */}
             <div className="w-full flex flex-col bg-gray-100 pb-10">
                 <div className="flex flex-col bg-white m-20 mb-10 p-8 rounded-3xl justify-between text-black">
                     <b className="text-2xl mb-5">PRODUCTS</b>
@@ -30,7 +30,7 @@ function ProductsList() {
                         <p>Quantity</p>
                     </div>
                 </div>
-                <div className="flex  mx-20 mt-10 rounded-3xl text-black ">
+                <div className="flex mx-20 mt-10 rounded-3xl text-black ">
                     <div className="w-[20%] bg-white flex flex-col p-3">
                         <div className="flex justify-between">
                             <p>Filter:</p>
@@ -70,6 +70,7 @@ function ProductsList() {
                     </div>
                 </div>
             </div>
+            <hr />
             <Footer />
 
         </div>
