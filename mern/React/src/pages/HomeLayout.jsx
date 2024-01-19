@@ -24,7 +24,7 @@ function HomeLayout() {
     const dispatch = useDispatch();
 
     return (
-        <div className="w-screen h-screen bg-white flex items-end">
+        <div className="w-screen h-screen bg-white text-black flex items-end">
             <div className="h-[10%] ">
                 <Navbar />
             </div>
@@ -33,8 +33,8 @@ function HomeLayout() {
                     <Sidebar onScreenChanged={onScreenChanged} />
                 </div>
                 <div className="w-4/5  bg-slate-200 custom-scrollbar">
-                    {/* <p>{state}</p>
-                    <button onClick={() => { dispatch(buyCake(cakeCount)) }}>Dispatch</button> */}
+                    <p>{state}</p>
+                    <button onClick={() => { dispatch(buyCake(cakeCount)) }}>Dispatch</button>
                     {currentScreen == 'Add product' ? <AddProduct /> : currentScreen == 'Inventory' ? <ProductList /> : <Orders />}
                 </div>
             </div>

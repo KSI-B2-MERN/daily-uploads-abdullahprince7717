@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa6";
 
 function footer() {
     return (
-        <div className="w-full h-60 flex justify-around bg-white text-black">
+        <div className="w-full flex justify-around bg-white text-black">
             <div className="w-48 flex flex-col justify-around">
                 <b>About Us</b>
                 <p>The exciting contemporary brand Suruchi is known for its attention to detail and premium graphics.</p>
