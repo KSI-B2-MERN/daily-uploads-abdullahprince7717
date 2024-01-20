@@ -19,9 +19,9 @@ function Cart() {
                         </div>
                     </div>
                     <div className='flex items-center bg-white'>
-                        <button className='text-xl hover:bg-black hover:text-white  focus:outline-none'>+</button>
-                        <p className='text-xl focus:outline-none'>1</p>
                         <button className='text-xl hover:bg-black hover:text-white  focus:outline-none'>-</button>
+                        <p className='text-xl focus:outline-none'>1</p>
+                        <button className='text-xl hover:bg-black hover:text-white  focus:outline-none'>+</button>
                     </div>
                     <div >Rs 6</div>
                 </div>

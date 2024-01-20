@@ -7,7 +7,7 @@ import Orders from "../components/orders"
 import { useSelector, useDispatch } from "react-redux"
 import { buyCake } from "../redux/cakeActions"
 
-function HomeLayout() {
+function BusinessLayout() {
 
     const [currentScreen, setCurentScreen] = useState('Add product');
     const [cakeCount, setCakeCount] = useState(5);
@@ -43,4 +43,4 @@ function HomeLayout() {
     )
 }
 
-export default HomeLayout
+export default BusinessLayout
