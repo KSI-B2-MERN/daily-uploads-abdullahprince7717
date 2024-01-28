@@ -10,6 +10,7 @@ import EditProduct from '../components/addProduct'
 import ProductsList from '../components/customer/productsList'
 import Cart from '../components/customer/cart'
 import Account from '../components/customer/Account'
+import ProductInfo from '../components/customer/productInfo'
 
 function AppRoutes() {
     const [signUp, setSignUp] = useState(false)
@@ -32,6 +33,7 @@ function AppRoutes() {
                     <Route path="products" element={<ProductsList />} />
                     <Route path="cart" element={<Cart />} />
                     <Route path="account" element={<Account />} />
+                    <Route path='productInfo' element = {<ProductInfo/>}/>
                     <Route path="*" element={<div>Error</div>}></Route>
                 </Route>
             </Routes>
