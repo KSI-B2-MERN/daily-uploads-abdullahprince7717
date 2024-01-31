@@ -9,9 +9,9 @@ import { LuShoppingCart } from "react-icons/lu";
 function header() {
     return (
 
-        <div className='h-35 w-full flex flex-col text-black'>
-            <div className='h-1/5 w-full flex justify-between p-4 bg-rose-500' >
-                <div className='w-24 flex justify-between'>
+        <div className='h-35 w-full flex flex-col '>
+            <div className='h-1/5 w-full flex justify-between p-4 bg-blue-700 text-white' >
+                <div className='w-24 flex justify-between hover:cursor-pointer'>
                     <FaInstagram size={20} />
                     <FaFacebook size={20} />
                     <FaTwitter size={20} />
@@ -31,8 +31,8 @@ function header() {
                     <input placeholder='Search for Products' className=' p-5 w-full h-full text-white rounded-xl ' />
                     <button className="bg-white ml-2"><FaSearch size={30} /></button>
                 </div>
-                <div className='w-28 flex justify-around'>
-                    <IoPersonOutline size={28} />
+                <div className='w-28 flex justify-around hover:cursor-pointer'>
+                    <IoPersonOutline size={28} onClick={() => { }} />
                     <LuShoppingCart size={28} />
                 </div>
             </div>

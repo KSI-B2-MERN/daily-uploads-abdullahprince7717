@@ -33,8 +33,8 @@ function BusinessLayout() {
                     <Sidebar onScreenChanged={onScreenChanged} />
                 </div>
                 <div className="w-4/5  bg-slate-200 custom-scrollbar">
-                    <p>{state}</p>
-                    <button onClick={() => { dispatch(buyCake(cakeCount)) }}>Dispatch</button>
+                    {/* <p>{state}</p>
+                    <button onClick={() => { dispatch(buyCake(cakeCount)) }}>Dispatch</button> */}
                     {currentScreen == 'Add product' ? <AddProduct /> : currentScreen == 'Inventory' ? <ProductList /> : <Orders />}
                 </div>
             </div>

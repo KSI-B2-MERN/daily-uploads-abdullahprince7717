@@ -1,16 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./header"
 import Footer from "./footer"
 import ProductCard from "./productCard"
+import axios from "axios"
 
 function ProductsList() {
 
     const prods = [1, 2, 3, 4, 5, 34, 34, 34];
+    const [products, setProducts] = useState([]);
     const [prodLayout, setProdLayout] = useState(4);
 
     const changeProdLayout = () => {
         prodLayout === 4 ? setProdLayout(3) : setProdLayout(4);
     }
+
+    const getProducts = async () => {
+
+        await axios.get('http://localhost:3000/products/getProducts', { withCredentials: true })
+            .then((res) => {
+                console.log(res)
+                setProducts(res.data.response);
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    useEffect(() => {
+        getProducts();
+        console.log("products", products)
+    }, [])
 
     return (
         <div className="w-screen h-screen ">
@@ -62,10 +81,12 @@ function ProductsList() {
                         </div>
                     </div>
                     <div className="w-[85%] flex flex-wrap ml-10">
-                        {prodLayout == 4 ?
-                            prods.map((value, index) => { return <div className=" md:mx-10 lg:mx-6 xl:mx-2 mb-5" key={index}><ProductCard /></div> })
-                            :
-                            prods.map((value, index) => { return <div className=" md:mx-10 lg:mx-6 xl:mx-10 mb-5" key={index}><ProductCard /></div> })
+                        {
+                            products?.map((value, index) => {
+                                return <div className={`${prodLayout == 4 ? " md:mx-10 lg:mx-6 xl:mx-2 mb-5" : " md:mx-10 lg:mx-6 xl:mx-10 mb-5"}`} key={index}>
+                                    <ProductCard data={value} />
+                                </div>
+                            })
                         }
                     </div>
                 </div>

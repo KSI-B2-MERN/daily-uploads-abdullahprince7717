@@ -59,7 +59,7 @@ function AddProduct() {
 
                 <label className='relative left-3' > Product Quantity </label>
                 <input className='m-2 p-3 border-slate-300 border-s rounded-xl text-white' type="number" placeholder="Product Quantity" value={productQuantity} onChange={(e) => { setProductQuantity(e.target.value) }} />
-                
+
                 <label className='relative left-3' > Product Description </label>
                 <input className='m-2  p-3 border-slate-300 border-s rounded-xl text-white' type="text" placeholder="Product Description" value={productDescription} onChange={(e) => { setProductDescription(e.target.value) }} />
 
@@ -73,7 +73,7 @@ function AddProduct() {
                 <label className='relative left-3' > Product Category </label>
                 <input className='m-2  p-3 border-slate-300 rounded-xl text-white' type="text" placeholder="Product Category" value={productCategory} onChange={(e) => { setProductCategory(e.target.value) }} />
 
-                <button className='m-2 mb-12  p-2 border-slate-30 rounded-xl text-white' onClick={() => {
+                <button className='m-2 mb-12  p-2 border-slate-30 rounded-xl ' onClick={() => {
                     void addProduct();
                 }}> Add Product</button>
             </div>
