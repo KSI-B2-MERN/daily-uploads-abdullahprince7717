@@ -221,11 +221,12 @@ function ProductInfo() {
                     </button>
                   </div>
                 </div>
+                
                 {visibility ? <Review handleVisibility={handleVisibility} /> : null}
 
-                <div className="w-ful flex justify-between pl-4 mt-6 pr-4">
+                <div className="w-ful flex justify-between bg-gray-50 pl-4 mt-12 pr-4">
+                  
                   <div className="flex flex-col">
-
                     <StarRatings
                       rating={5}
                       starRatedColor="yellow"
